@@ -1,4 +1,3 @@
-//ArrayList Implementation
 #include<iostream>
 using namespace std;
 #define SIZE  10
