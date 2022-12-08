@@ -1,96 +1,107 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
-class node {
+
+class node{
 public:
-    node* next;
     int data;
-    node(int val) {
+    node* next;
+    node* temp;
+
+    node(int val)
+    {
         data = val;
         next = NULL;
+        temp = NULL;
     }
+
 };
-class SingleLinkedList
-{
-private:
-    node* head;
-    int length;
+
+
+class SLL{
 public:
-    SingleLinkedList() {
-        head = NULL;
+    int length;
+    node* head;
+
+    SLL()
+    {
         length = 0;
+        head = NULL;
     }
-    // Insertion in Single Linklist
-    void insert(int val) {
-        node* t = new node(val);
-        if (head == NULL) { // Head is Empty
-            head = t;
-            length++;
-        }
-        else {
-            node* curr = head;
-            while (curr->next != NULL) {
-                curr = curr->next;
-            }
-            curr->next = t;
-            length++;
-        }
-    }
-    void insertAt(int pos, int val) {
-            if (pos<1 || pos>length + 1) {
-                cout << "Invalid position." << endl;
-                return;
-            }
-            node* t = new node(val);
-            if (pos == 1) { // When we want to inserting new node before  head..
-                if (head == NULL)  // Head is Empty
-                    head = t;        
-                else { //head is already exist,  inserting new node before existing head..
-                    t->next = head;
-                    head = t;
-                }
-                length++;
-            }
-            else { // position can be in center or in last
-                node* curr = head;
-                node* pre = head;
-                for (int i = 1; i < pos-1; i++) {
-                    pre = curr;
-                    curr = curr->next;
-                }
-                pre->next = t;
-                if (curr != NULL) // If its not a Last node
-                    t->next = curr;
-                length++;
-            }
-    }
-    // What about insert through Recursion.... ???
-    // Printing
-    void printing() {
-        cout << "Printing the Single Linked List" << endl;
-        cout << "Head---> ";
+
+    void print()
+    {
         node* curr = head;
-        while (curr != NULL) {
-            cout << curr->data << "---> ";
-            curr = curr->next;
-        }
-        cout << "NULL";
-    }
-    // Removing Node from List
-    // What about removing node through Recursion.... ???
-    void removeAt(int pos) {
-        node* curr = head;
-        if (head == NULL) {
-            cout << "LIST is empty " << endl;
+
+        if(curr == NULL)
+        {
+            cout<<"The list is empty";
             return;
         }
-        if (pos == 1) {  // for deleting head
+
+        while(curr!=NULL)
+        {
+            cout<<curr->data<<"\t";
+            curr = curr->next;
+        }
+    }
+
+    void insert(int val)
+    {
+        if(head == NULL)
+        {
+            head = new node(val);
+            length++;
+            return;
+        }
+
+        else
+        {
+            node* curr = head;
+            while(curr->next !=NULL)
+            {
+                curr= curr->next;
+            }
+            curr->next = new node(val);
+            length++;
+        }
+    }
+
+    void insertAt(int key, int val)
+    {
+        node* curr = head;
+        cout<<"Mention key"<<endl;
+        cin>>key;
+
+        while(curr->next != NULL)
+        {
+            if(curr->data == key)
+            {
+                curr->next = new node(val);
+                length++;
+                return;
+            }
+
+            else{curr=curr->next;}
+        }
+
+    }
+
+    void delet(int key)
+    {
+        node *curr = head;
+
+        if (head == NULL) {
+            cout << "list is empty";
+            return;
+        } else if (key == 1) {
             head = curr->next;
             delete curr;
-            length--;
+            return;
         }
-        else {   // for deleting any other node
+
+        else {
             node* temp = NULL;
-            for (int i = 0; i < pos - 1; i++) {
+            for (int i = 0; i < key - 1; i++) {
                 temp = curr;
                 curr = curr->next;
             }
@@ -100,29 +111,22 @@ public:
             length--;
         }
     }
-    int size() {
-        return length;
-    }
-    node* getHead() {
-        node* curr = head;
-        return curr;
-    }
+
 };
 
-
 int main() {
-    SingleLinkedList obj;
-    obj.insert(11);
-    obj.insert(12);
-    obj.insert(13);
-    obj.insert(14);
-    obj.insert(15);
-    obj.insert(16);
-    obj.insert(17);
-    obj.insert(18);
-    obj.insertAt(1, 300);
-    obj.removeAt(2);
-    obj.printing();
 
+    SLL obj;
+    int limit = 0;
+    int a;
+    cout<<"Enter data limit: "<<endl;
+    cin>>limit;
+    for(int i=0; i<limit; i++){
+        cout<<"Enter data: "<<endl;
+        cin>>a;
+        obj.insert(a);
+    }
+    
     return 0;
-}
+};
+
