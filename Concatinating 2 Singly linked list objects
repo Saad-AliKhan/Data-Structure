@@ -1,0 +1,11 @@
+void conc(SLL obj, SLL obj2)
+{
+    node* temp = NULL;
+    temp = obj.head;
+
+    while(temp->next != NULL)
+    {
+        temp = temp->next;
+    }
+    temp->next = obj2.head;
+
