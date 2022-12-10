@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int fun(int* t, int* l){
+    if(*l == 0)
+    {
+        return 1;
+    }
+        cout << *t << "*" << *l << "=" << *t * *l << endl;
+        *l= *l-1;
+        return fun(t, l);
+}
+
+
+int main (){
+    int *t = new int;
+    int *l = new int;
+    *t=9;
+    *l=20;
+    fun(t, l);
+    return 0;
+}
+
