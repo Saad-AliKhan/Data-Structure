@@ -1,0 +1,11 @@
+void search(int key)
+{
+    node* curr=head;
+
+    while(curr->data != key)
+    {
+        curr = curr->next;
+    }
+    cout<<"Yes, "<<key<<" is present in this linked list."<<endl;
+    return;
+}
