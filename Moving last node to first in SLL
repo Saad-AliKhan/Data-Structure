@@ -1,0 +1,18 @@
+void move()
+{
+    node* temp1 = NULL;
+    node* pre = NULL;
+    node* temp2 = NULL;
+    temp1 = this->head;
+    temp2 = this->head;
+
+    while(temp1->next != NULL)
+
+    {   pre = temp1;
+        temp1 = temp1->next;
+    }
+    pre->next = NULL;
+    temp1->next = temp2;
+    this->head = temp1;
+
+}
