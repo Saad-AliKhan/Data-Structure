@@ -1,0 +1,67 @@
+#include <iostream>
+using namespace std;
+
+class ArrayList
+        {
+public:
+
+    string obj1[10] = {"a","b","g","w","k","s","z","y"};
+    string obj2[10] = {"k","s","z","f"};
+    string obj3[10];
+    int x = 0;
+    string* ptr1=obj1;
+    string* ptr2=obj2;
+    string* ptr3=obj3;
+
+
+
+
+
+   int common()
+   {
+      for(int i=0;i<10;i++)
+      {
+            bool check = false;
+
+            for(int j=0;j<10;j++)
+            {
+
+                if (*(ptr1+i) == *(ptr2+j))
+                {
+                    check = true;
+                    break;
+                }
+            }
+
+            if(check == false)
+            {
+                *(ptr3+x) = *(ptr1+i);
+                x++;
+            }
+      }
+   }
+
+    int print()
+    {
+        for(int i=0;i<10;i++)
+        {
+            cout<<obj3[i]<<",";
+        }
+    }
+
+
+
+
+
+
+};
+
+int main()
+{
+    ArrayList a1;
+    a1.common();
+    a1.print();
+
+   return 0;
+};
+
