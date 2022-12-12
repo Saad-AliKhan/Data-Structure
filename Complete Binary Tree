@@ -25,66 +25,64 @@ public:
 
     void insert(int val)
     {
-        node* temp = NULL;
+        node* temp = root;
         node* t = new node(val);
 
         if (root == NULL)
         {
             root = t;
-            t->left = NULL;
-            t->right = NULL;
             count++;
             return;
-
         }
-        
 
         if(count == (pow (2, height+1))-1)
         {
             height++;
-            if(temp->left == NULL and temp->right == NULL and height<L_height)
+
+            if(temp->left == NULL && temp->right == NULL && height<L_height)
             {
                 while(temp->left != NULL)
                 {
                     temp= temp->left;
                 }
                 temp->left = t;
-                t->left = NULL;
-                t->right = NULL;
                 count++;
                 return;
             }
 
             else
             {
-                while(temp->right != NULL and height < L_height)
+                while(temp->right != NULL && height < L_height)
                 {
                     temp= temp->right;
                 }
                 temp->right = t;
-                t->left = NULL;
-                t->right = NULL;
                 count++;
                 return;
+
             }
         }
     }
 
+
     void print(node* curr)
     {
-
         if(curr->left != NULL)
         {
             print(curr->left);
         }
-        cout<<curr->data;
+
+        cout<<curr->data<<"\t";
 
 
         if(curr->right != NULL)
         {
             print(curr->right);
         }
-        cout<<curr->data;
+
+
+
+
     }
 };
 
@@ -94,8 +92,6 @@ int main() {
     tree1.insert(1);
     tree1.insert(2);
     tree1.insert(3);
-    tree1.insert(4);
-    tree1.insert(5);
-    tree1.print(root);
+    tree1.print(tree1.root);
     return 0;
 }
