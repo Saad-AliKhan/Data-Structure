@@ -1,0 +1,101 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+class node{
+public:
+    int data;
+    node* left;
+    node* right;
+
+    node(int val){
+        data = val;
+        left = NULL;
+        right = NULL;
+    }
+};
+
+
+class CBT{
+public:
+    node* root = NULL;
+    int count = 0;
+    int height = 0;
+    int L_height = height - 1;
+
+    void insert(int val)
+    {
+        node* temp = NULL;
+        node* t = new node(val);
+
+        if (root == NULL)
+        {
+            root = t;
+            t->left = NULL;
+            t->right = NULL;
+            count++;
+            return;
+
+        }
+        
+
+        if(count == (pow (2, height+1))-1)
+        {
+            height++;
+            if(temp->left == NULL and temp->right == NULL and height<L_height)
+            {
+                while(temp->left != NULL)
+                {
+                    temp= temp->left;
+                }
+                temp->left = t;
+                t->left = NULL;
+                t->right = NULL;
+                count++;
+                return;
+            }
+
+            else
+            {
+                while(temp->right != NULL and height < L_height)
+                {
+                    temp= temp->right;
+                }
+                temp->right = t;
+                t->left = NULL;
+                t->right = NULL;
+                count++;
+                return;
+            }
+        }
+    }
+
+    void print(node* curr)
+    {
+
+        if(curr->left != NULL)
+        {
+            print(curr->left);
+        }
+        cout<<curr->data;
+
+
+        if(curr->right != NULL)
+        {
+            print(curr->right);
+        }
+        cout<<curr->data;
+    }
+};
+
+
+int main() {
+    CBT tree1;
+    tree1.insert(1);
+    tree1.insert(2);
+    tree1.insert(3);
+    tree1.insert(4);
+    tree1.insert(5);
+    tree1.print(root);
+    return 0;
+}
